@@ -23,7 +23,7 @@ const App:FunctionComponent = () => {
       <Route exact path="/" component={Home} />
       <Route path="/createquiz" component={NewQuiz} />
       <Route path="/answerquiz/:id" component={AnswerQuiz} />
-      <Route path="/myquizzes/:id" component={ViewMyQuizzes} />
+      <Route path="/myquizzes" component={ViewMyQuizzes} />
     </Switch>
   );
 }

@@ -38,9 +38,9 @@ const RecentQuiz: React.FC = () => {
                 recentQuizzes.map((elem:any, index: number) => {
                     return(
                         <div key={`recentQuiz-${index}`}>
-                            <p>{elem.quiz.title}</p>
-                            <p>{elem.displayName}</p>
-                            <p>{elem.createdAt.toDate().toLocaleString()}</p>
+                            <p>Quiz Title: {elem.quiz.title}</p>
+                            <p>Created by: {elem.displayName}</p>
+                            <p>Submitted at: {elem.createdAt.toDate().toLocaleString().split(",")[0]}</p>
                         </div>
                     )
                 })

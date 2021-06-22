@@ -10,12 +10,14 @@ describe("Home Page test suite", () => {
 
         render(<Home />, {wrapper: MemoryRouter})
         
-        expect(screen.getByText("Quizzaro")).toBeInTheDocument();
-        expect(await screen.findByText("Sign in with Google")).toBeInTheDocument();
-        expect(screen.getByTestId("quiz-search-input")).toBeInTheDocument();
-        expect(screen.getByTestId("quiz-search-button")).toBeInTheDocument();
-        expect(screen.getByTestId("recent-quiz-container")).toBeInTheDocument()
-        expect(screen.getByTestId("quiz-id-link")).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByText("Quizzaro")).toBeInTheDocument();
+            expect(screen.getByText("Sign in with Google")).toBeInTheDocument();
+            expect(screen.getByTestId("quiz-search-input")).toBeInTheDocument();
+            expect(screen.getByTestId("quiz-search-button")).toBeInTheDocument();
+            expect(screen.getByTestId("recent-quiz-container")).toBeInTheDocument()
+            expect(screen.getByTestId("quiz-id-link")).toBeInTheDocument();
+        })
 
     })
 
@@ -30,10 +32,4 @@ describe("Home Page test suite", () => {
         })
     })
 
-    it("displays recent quizzes", async () => {
-        
-        render(<Home />, {wrapper: MemoryRouter});
-
-        
-    })
 })

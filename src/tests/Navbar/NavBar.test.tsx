@@ -11,7 +11,7 @@ describe("Navbar Suite", () => {
 
         render(<NavBar />)
 
-        expect(screen.getByText("Quizzaro")).toBeInTheDocument
+        expect(screen.getByText("Quizzaro")).toBeInTheDocument()
         expect(await screen.findByText("Sign in with Google")).toBeInTheDocument()
     })
 
@@ -31,7 +31,7 @@ describe("Navbar Suite", () => {
         userEvent.click(screen.getByTestId("dropdown-button"));
 
         expect(screen.getByTestId("sign-out-button")).toBeInTheDocument()
-        expect(screen.getByTestId("view-user-quiz"))
+        expect(screen.getByTestId("view-user-quiz")).toBeInTheDocument()
     })
 
     it("Clicking user dropdown again hides it", () => {
