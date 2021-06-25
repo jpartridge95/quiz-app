@@ -119,7 +119,7 @@ const NewQuiz: React.FC = (): JSX.Element => {
         if (error === "" && auth.currentUser) {
             firestore.collection("quizzes").add({
                 quiz: {
-                    title: quizTitle,
+                    title: quizTitle.split(" "),
                     questions: questions,
                 },
                 createdBy: firestore.doc("users/" + auth.currentUser.uid),

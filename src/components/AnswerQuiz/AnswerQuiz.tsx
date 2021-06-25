@@ -19,25 +19,11 @@ interface IQuestionData {
 const AnswerQuiz: React.FC = () => {
 
     const [usefulData, setUsefulData] = useState<IQuestionData | undefined>();
-    const [currentQuestion, setCurrentQuestion] = useState<IQuestions | undefined>();
     const [count, setCount] = useState<number>(0);
     const [score, setScore] = useState<number>(0);
+    const [enabled, setEnabled] = useState<boolean>(true);
 
     const { id }:any = useParams()
-
-    const errorQuiz:IQuestions = {
-        rootQuestion: "",
-        rootAnswers: [
-            {
-                answerText: "Big error boi",
-                correct: false,
-            },
-            {
-                answerText: "Click here to try again",
-                correct: true
-            }
-        ]
-    }
 
     useEffect(() => {
         const quizRef = firestore.collection("quizzes").doc(id)
@@ -53,11 +39,15 @@ const AnswerQuiz: React.FC = () => {
     })
 
     const handleQuestionAdvance = (event: React.MouseEvent<HTMLButtonElement>):void => {
-        event.preventDefault()
-        setCount((state:number) => state + 1)
+        event.preventDefault();
+        setEnabled(false);
         if (event.currentTarget.name === "true") {
             setScore((score: number) => score + 1)
         }
+        setTimeout(() => {
+            setCount((state:number) => state + 1)
+            setEnabled(true)
+        }, 1500);
     }
 
     return (
@@ -75,7 +65,8 @@ const AnswerQuiz: React.FC = () => {
                                 <button 
                                     name={elem.correct ? "true" : "false"}
                                     onClick={handleQuestionAdvance}
-                                    key={`answer-${index}`} >{elem.answerText}</button>
+                                    key={`answer-${index}`}
+                                    disabled={!enabled} >{elem.answerText}</button>
                             )
                         })
                     }
@@ -85,6 +76,7 @@ const AnswerQuiz: React.FC = () => {
             }
             <p>Total Score:</p>
             {questionArray && <p>{score}/{questionArray.length}</p>}
+            {score === questionArray?.length ? <p>100%, well done</p> : <p>{(score/count)*100}%</p>}
         </div>
     )
 }

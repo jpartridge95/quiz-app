@@ -14,7 +14,7 @@ const ViewMyQuizzes: React.FC = () => {
         <div>
             <NavBar />
             <p>Hello {user?.displayName}, here are all of your quizzes</p>
-            <InfiniteScrollQuizzes />
+            <InfiniteScrollQuizzes userInfo={user} />
         </div>
     )
 }
