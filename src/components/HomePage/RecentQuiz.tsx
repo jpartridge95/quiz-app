@@ -2,6 +2,7 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { firestore } from '../../App';
 import { IAnswer, IQuestions, answer } from "../../types/types"
+import { Link } from 'react-router-dom';
 
 
 
@@ -12,7 +13,7 @@ const RecentQuiz: React.FC = () => {
 
     useEffect(() => {
         const collectionRef = firestore.collection("quizzes")
-        collectionRef.orderBy("createdAt").limit(3).get()
+        collectionRef.orderBy("createdAt", "desc").limit(3).get()
             .then((query) => {
                 let queryResults: any = []
                 query.forEach((doc) => {
@@ -36,11 +37,12 @@ const RecentQuiz: React.FC = () => {
             {   
                 recentQuizzes && 
                 recentQuizzes.map((elem:any, index: number) => {
+                    let { title } = elem.quiz;
                     return(
                         <div key={`recentQuiz-${index}`}>
-                            <p>Quiz Title: {elem.quiz.title}</p>
+                            <Link to={"/answerquiz/" + elem.uid}>{title.join(" ")[0].toUpperCase() + title.join(" ").substring(1)}</Link>
                             <p>Created by: {elem.displayName}</p>
-                            <p>Submitted at: {elem.createdAt.toDate().toLocaleString().split(",")[0]}</p>
+                            <p>Submitted on: {elem.createdAt.toDate().toLocaleString().split(",")[0]}</p>
                         </div>
                     )
                 })

@@ -115,7 +115,7 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
                     )
                 })
             }
-            <button data-testid={"add-answer-button"} onClick={addAnswerField}></button>
+            <button data-testid={"add-answer-button"} onClick={addAnswerField}>Add an answer</button>
         </div>
     )
 }

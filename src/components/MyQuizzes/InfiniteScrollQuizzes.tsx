@@ -1,10 +1,9 @@
-import { UserCredential, UserInfo } from '@firebase/auth-types';
-import { CollectionReference, DocumentData, DocumentReference } from '@firebase/firestore-types';
+import { DocumentReference } from '@firebase/firestore-types';
 import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import { firestore } from '../../App';
-import { auth } from '../../App';
+import { Link } from 'react-router-dom';
+
 
 const InfiniteScrollQuizzes:React.FC<{userInfo: any}> = ({userInfo}) => {
     
@@ -50,13 +49,16 @@ const InfiniteScrollQuizzes:React.FC<{userInfo: any}> = ({userInfo}) => {
                         setIsLoader(false)
                     } else {
                         setIsLoader(true)
-                    }
+                    }  // control flow to stop infinite scroll when !more results
                 });
             }
         if (!rendered) {
-            setRendered(true)
+            setRendered(true) 
+            // stops initial render, thereby preventing double render of first five results
         }
+     // eslint-disable-next-line
     }, [userInfo, pageNumber])
+   
 
     const deleteQuiz = (event: React.MouseEvent<HTMLButtonElement>) => {
         const toDeleteRef: DocumentReference = firestore.collection("quizzes").doc(event.currentTarget.name);
@@ -71,7 +73,7 @@ const InfiniteScrollQuizzes:React.FC<{userInfo: any}> = ({userInfo}) => {
 
             {results.map((elem:any, index:number) => (
                 <div key={"MQ-" + index}>
-                    <h3>{elem.data.quiz.title.join(" ")}</h3>
+                    <Link to={"/answerquiz/" + elem.id}>{elem.data.quiz.title.join(" ")[0].toUpperCase() + elem.data.quiz.title.join(" ").substring(1)}</Link>
                     <p>Number of questions in quiz - {elem.data.quiz.questions.length}</p>
                     <p>Created on: {elem.data.createdAt.toDate().toLocaleString().split(",")[0]}</p>
                     <button onClick={deleteQuiz} name={elem.id}>Delete Quiz</button>
@@ -80,7 +82,8 @@ const InfiniteScrollQuizzes:React.FC<{userInfo: any}> = ({userInfo}) => {
 
             
             <div ref={loader}>
-                <p>{isLoader ? "Loading..." : "No more to display"}</p>
+                <p>{isLoader ? "Loading..." : "No more to display"}</p> 
+                {/*Probably have an animated svg for the loader*/}
             </div>
         </div>
     )

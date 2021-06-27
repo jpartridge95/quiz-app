@@ -119,7 +119,7 @@ const NewQuiz: React.FC = (): JSX.Element => {
         if (error === "" && auth.currentUser) {
             firestore.collection("quizzes").add({
                 quiz: {
-                    title: quizTitle.split(" "),
+                    title: quizTitle.toLowerCase().split(" "),
                     questions: questions,
                 },
                 createdBy: firestore.doc("users/" + auth.currentUser.uid),
@@ -167,7 +167,7 @@ const NewQuiz: React.FC = (): JSX.Element => {
                             onClick={addQuestionComponent}>Add a new question</button>
                         <button
                             onClick={submitQuiz}
-                            data-testid={"submit-quiz-button"}></button>
+                            data-testid={"submit-quiz-button"}>Submit quiz</button>
                         <p>{error}</p>
                     </>
                     :

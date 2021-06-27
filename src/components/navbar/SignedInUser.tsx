@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { auth } from "../../App"
 import SignOut from './SignOut';
 import UserDropdown from './UserDropdown';
+import { Link } from 'react-router-dom';
  
 const SignedInUser: React.FC = () => {
 
@@ -24,6 +25,7 @@ const SignedInUser: React.FC = () => {
                 dropdownVisible &&
                 <UserDropdown />
             }
+            <Link to={"/createquiz"}>New Quiz</Link>
         </>
     )
 }

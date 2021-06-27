@@ -42,7 +42,9 @@ const AnswerQuiz: React.FC = () => {
         event.preventDefault();
         setEnabled(false);
         if (event.currentTarget.name === "true") {
-            setScore((score: number) => score + 1)
+            setTimeout(() => {
+                setScore((score: number) => score + 1)
+            }, 1500)
         }
         setTimeout(() => {
             setCount((state:number) => state + 1)

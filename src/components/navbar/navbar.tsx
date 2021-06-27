@@ -24,7 +24,6 @@ const NavBar: FunctionComponent = () => {
                 <SignedInUser />
             }
             <Link to={"/"}>Home</Link>
-            <Link to={"/createquiz"}>New Quiz</Link>
         </nav>
     )
 }

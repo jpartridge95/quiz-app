@@ -21,7 +21,8 @@ const SearchQuiz: React.FC = () => {
     const handleSearch = (event: React.MouseEvent<HTMLButtonElement>) => {
         event.preventDefault();
         const quizRef: CollectionReference = firestore.collection("quizzes");
-        const quizQuery: Query<DocumentData> = quizRef.where("quiz.title", "array-contains-any", searchTerm.split(" "))
+        const quizQuery: Query<DocumentData> = quizRef
+            .where("quiz.title", "array-contains-any", searchTerm.toLowerCase().split(" "))
         setQuery(quizQuery)
         setWindowVisible(true)
     }
