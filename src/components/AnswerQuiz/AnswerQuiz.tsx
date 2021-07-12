@@ -16,7 +16,7 @@ interface IQuestionData {
     quiz: IQuestionDataInner,
 }
 
-const AnswerQuiz: React.FC = () => {
+export const AnswerQuiz: React.FC = () => {
 
     const [usefulData, setUsefulData] = useState<IQuestionData | undefined>();
     const [count, setCount] = useState<number>(0);
@@ -82,5 +82,3 @@ const AnswerQuiz: React.FC = () => {
         </div>
     )
 }
-
-export default AnswerQuiz

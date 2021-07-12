@@ -9,7 +9,7 @@ describe("New Quiz Section", () => {
     
     it("Renders correctly", async () => {
 
-        render(<NewQuiz />)
+        render(<NewQuiz />, {wrapper: MemoryRouter})
 
         await waitFor(() => {
             expect(screen.queryAllByTestId("question-input-field")).toHaveLength(1)
@@ -21,7 +21,7 @@ describe("New Quiz Section", () => {
 
     it("adds new question on click", async () => {
 
-        render(<NewQuiz />)
+        render(<NewQuiz />, {wrapper: MemoryRouter})
 
         userEvent.click(screen.getByTestId("add-question-button"))
 
@@ -40,7 +40,7 @@ describe("New Quiz Section", () => {
 
     it("removes the correct component on delete component click", async () => {
 
-        render(<NewQuiz />)
+        render(<NewQuiz />, {wrapper: MemoryRouter})
 
         userEvent.click(screen.getByTestId("add-question-button"))
         userEvent.click(screen.getByTestId("add-question-button"))
@@ -77,7 +77,7 @@ describe("New Quiz Section", () => {
         userEvent.click(screen.getByTestId("submit-quiz-button"))
 
         await waitFor(() => {
-            expect(screen.queryByText("One or more question fields are empty")).toBeNull
+            expect(screen.queryByText("One or more question fields are empty")).toBeNull()
             expect(screen.getByText("One or more answer fields are empty")).toBeInTheDocument()
         })
 

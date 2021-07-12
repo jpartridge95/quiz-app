@@ -1,5 +1,5 @@
 import React from "react"
-import { render, screen } from "@testing-library/react"
+import { cleanup, render, screen, waitFor } from "@testing-library/react"
 import NavBar from "../../components/navbar/navbar"
 import SignedInUser from "../../components/navbar/SignedInUser"
 import userEvent from "@testing-library/user-event"
@@ -7,17 +7,23 @@ import { MemoryRouter } from "react-router"
 
 describe("Navbar Suite", () => {
 
+    beforeEach(() => {
+        localStorage.setItem("cookies-accepted", "yes")
+    })
+
     it("renders nav correctly", async () => {
 
-        render(<NavBar />)
+        render(<NavBar />, {wrapper: MemoryRouter})
 
-        expect(screen.getByText("Quizzaro")).toBeInTheDocument()
-        expect(await screen.findByText("Sign in with Google")).toBeInTheDocument()
+        await waitFor(() => {
+            expect(screen.getByText("Quizzaro")).toBeInTheDocument()
+            expect(screen.getByText("Sign in with Google")).toBeInTheDocument()
+        })
     })
 
     it("renders signedinuser component correctly", () => {
 
-        render(<SignedInUser />);
+        render(<SignedInUser />, {wrapper: MemoryRouter});
 
         expect(screen.getByTestId("user-image")).toBeInTheDocument();
         expect(screen.getByTestId("dropdown-button")).toBeInTheDocument();

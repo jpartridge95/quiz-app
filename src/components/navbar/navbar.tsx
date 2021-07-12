@@ -1,21 +1,21 @@
 import React, { FunctionComponent } from "react"
 import { auth } from "../../App"
 import { useAuthState } from "react-firebase-hooks/auth"
-import { User, UserCredential, UserMetadata } from "@firebase/auth-types"
-import { UserInfo } from "os"
 import SignIn from "./SignIn"
 import SignedInUser from "./SignedInUser"
 import { Link } from "react-router-dom"
+import "../../stylesheets/navbar.css"
 
 const NavBar: FunctionComponent = () => {
 
+    //eslint-disable-next-line
     const [user] = useAuthState(auth)
 
     const { currentUser } = auth
 
     return (
-        <nav>
-            <h1>Quizzaro</h1>
+        <nav className={"navbar-body"}>
+            <Link to={"/"} className={"navbar-header"}>Quizzaro</Link>
 
             {
                 !currentUser ?
@@ -23,7 +23,7 @@ const NavBar: FunctionComponent = () => {
                 :
                 <SignedInUser />
             }
-            <Link to={"/"}>Home</Link>
+            {/* <Link to={"/cookies"}>Cookie Preferences</Link> */}
         </nav>
     )
 }

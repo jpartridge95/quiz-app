@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import { auth } from "../../App"
 
 const SignOut: React.FC = () => {
@@ -10,7 +9,10 @@ const SignOut: React.FC = () => {
     }
 
     return (
-        <button onClick={handleSignOut} data-testid={"sign-out-button"}>Sign Out</button>
+        <button 
+            onClick={handleSignOut} 
+            data-testid={"sign-out-button"}
+            className={"navbar-signout navbar-dropdown-link"}>Sign Out</button>
     )
 }
 

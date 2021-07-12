@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event'
 import QuestionComponent from "../../components/NewQuiz/QuestionComponent"
 import { debug } from "console"
 import NewQuiz from "../../components/NewQuiz/newQuiz"
+import { MemoryRouter, Router } from "react-router"
 
 const ENV_ANSWERS = {
         rootQuestion: "",
@@ -27,7 +28,7 @@ describe("Add question component", () => {
 
     it("renders correctly", async () => {
 
-        render(<NewQuiz />)
+        render(<NewQuiz />, {wrapper: MemoryRouter})
 
         await waitFor(() => {
             expect(screen.getByTestId("question-input-field")).toBeInTheDocument();
@@ -40,7 +41,7 @@ describe("Add question component", () => {
 
     it("clicking add answer adds an answer input", async () => {
 
-        render(<NewQuiz />);
+        render(<NewQuiz />, {wrapper: MemoryRouter});
 
         userEvent.click(screen.getByTestId("add-answer-button"));
 
@@ -53,7 +54,7 @@ describe("Add question component", () => {
 
     it("clicking add answer twice adds another answer input", async () => {
 
-        render(<NewQuiz />);
+        render(<NewQuiz />, {wrapper: MemoryRouter});
 
         userEvent.click(screen.getByTestId("add-answer-button"));
         userEvent.click(screen.getByTestId("add-answer-button"));
@@ -68,7 +69,7 @@ describe("Add question component", () => {
 
     it("clicking checkbox sets checked to true", async () => {
 
-        render(<NewQuiz />);
+        render(<NewQuiz />, {wrapper: MemoryRouter});
 
         userEvent.click(screen.getByTestId("correct-check-test"));
 
@@ -80,7 +81,7 @@ describe("Add question component", () => {
 
     it("adding input functions as intended", async () => {
         
-        render(<NewQuiz />);
+        render(<NewQuiz />, {wrapper: MemoryRouter});
 
         userEvent.type(screen.getAllByTestId("answer-input-field")[0], "this is the right answer")
         userEvent.click(screen.getByTestId("correct-check-test"))
@@ -96,7 +97,7 @@ describe("Add question component", () => {
 
     it("adding a question does not disrupt inputs", async () => {
 
-        render(<NewQuiz/>);
+        render(<NewQuiz/>, {wrapper: MemoryRouter});
 
         userEvent.type(screen.getAllByTestId("answer-input-field")[0], "this is the right answer")
         userEvent.click(screen.getByTestId("correct-check-test"))
@@ -118,7 +119,7 @@ describe("Add question component", () => {
 
     it("pressing the remove button does so", async () => {
 
-        render(<NewQuiz />);
+        render(<NewQuiz />, {wrapper: MemoryRouter});
 
         userEvent.click(screen.getByTestId("add-answer-button"))
 

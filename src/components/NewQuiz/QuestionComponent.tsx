@@ -88,7 +88,12 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
 
     return (
         <div>
-            <input data-testid={"question-input-field"} value={newQuestion?.rootQuestion} onChange={handleQuestionChange}></input>
+            <input 
+                data-testid={"question-input-field"} 
+                value={newQuestion?.rootQuestion} 
+                onChange={handleQuestionChange}
+                placeholder={"Question"}></input>
+            <p>Correct?</p>
             {
                 rootAnswers.map((element: answer, index: number):JSX.Element => {
                     return (
@@ -103,7 +108,8 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
                                 type={"text"} 
                                 data-testid={"answer-input-field"}
                                 value={element.answerText}
-                                onChange={handleTextChange}></input>
+                                onChange={handleTextChange}
+                                placeholder={`Answer ${index + 1}`}></input>
 
                            <input 
                                 name={`check-${index}`}

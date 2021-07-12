@@ -1,10 +1,7 @@
-import { AdditionalUserInfo, FirebaseAuth, GoogleAuthProvider, User, UserCredential, UserInfo } from '@firebase/auth-types';
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { auth } from "../../App"
-import SignOut from './SignOut';
 import UserDropdown from './UserDropdown';
-import { Link } from 'react-router-dom';
  
 const SignedInUser: React.FC = () => {
 
@@ -12,20 +9,28 @@ const SignedInUser: React.FC = () => {
 
     const { photoURL }: any  = auth.currentUser || {photoURL: "#"}
 
-    const toggleDropdown = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    const toggleDropdown = (event: React.MouseEvent<HTMLElement>): void => {
         event.preventDefault();
         setDropdownVisible((state: boolean) => !state )
     }
 
+    const closeModal = (event: React.MouseEvent<HTMLDivElement>) => {
+        setDropdownVisible(false)
+    }
+
     return (
         <>
-            <img src={photoURL} data-testid={"user-image"}></img>
-            <button onClick={toggleDropdown} data-testid={"dropdown-button"}>V</button>
+            <img 
+                src={photoURL}
+                alt={"User Pic"}
+                onClick={toggleDropdown} 
+                data-testid={"dropdown-button"}
+                className={"navbar-picture"}></img>
             {
                 dropdownVisible &&
-                <UserDropdown />
+                <UserDropdown
+                    action={closeModal} />
             }
-            <Link to={"/createquiz"}>New Quiz</Link>
         </>
     )
 }

@@ -6,6 +6,16 @@ import { GoogleAuthProvider } from '@firebase/auth-types';
 
 const SignIn: React.FC = () => {
 
+    const [cookiesAccepted, setcookiesAccepted] = useState(false);
+
+    let localCookies: string | null = localStorage.getItem("cookies-accepted")
+
+    React.useEffect(() => {
+        if (localStorage.getItem("cookies-accepted") === "yes") {
+            setcookiesAccepted(true)
+        }
+    }, [localCookies])
+
     const SignInWithGoogle = (event: React.MouseEvent<HTMLButtonElement>):void => {
         event.preventDefault()
         const provider:GoogleAuthProvider = new firebase.auth.GoogleAuthProvider()
@@ -19,14 +29,20 @@ const SignIn: React.FC = () => {
                 email: auth.currentUser?.email,
                 photoURL: auth.currentUser?.photoURL,
                 lastSignIn: firebase.firestore.FieldValue.serverTimestamp()
-            })
+            }, {merge: true})
             .catch((error:any) => console.log(error))
         })
     }
     
 
     return (
-        <button onClick={SignInWithGoogle}>Sign in with Google</button>
+            cookiesAccepted 
+                ? 
+                <button 
+                    onClick={SignInWithGoogle}
+                    className={"navbar-sign-in"}>Sign in with Google</button>
+                :
+                <button>You must accept cookies to sign in</button>
     )
 }
 

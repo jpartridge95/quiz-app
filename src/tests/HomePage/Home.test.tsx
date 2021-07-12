@@ -6,6 +6,10 @@ import { MemoryRouter, Router } from "react-router"
 
 describe("Home Page test suite", () => {
 
+    beforeEach(() => {
+        localStorage.setItem("cookies-accepted", "yes")
+    })
+
     it("renders correctly", async () => {
 
         render(<Home />, {wrapper: MemoryRouter})

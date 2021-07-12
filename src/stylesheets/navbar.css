@@ -1,0 +1,87 @@
+/* All CSS custom properties can be found in index.css */
+
+.navbar-body {
+    background: var(--blue-gradient);
+    display: flex;
+    flex-direction: row;
+}
+
+.navbar-header {
+    font-size: 2.4rem;
+    margin-left: 2rem;
+    align-self: center;
+    text-decoration: none;
+    color: var(--light-teal);
+}
+
+.navbar-picture {
+    border-radius: 50%;
+    max-height: 3.5rem;
+    width: auto;
+    margin: 1rem 4rem 1rem auto;
+    box-shadow: 0 0 0 4px #01295F,
+                0 0 0 6px #C6E1EC;
+    flex: 0 1 auto;
+    transition: all 100ms ease-in-out;
+}
+
+.navbar-picture:hover {
+    cursor: pointer;
+    transform: scale(1.21);
+    box-shadow: none;
+}
+
+.navbar-sign-in {
+    border-radius: 3px;
+    border: none;
+    width: auto;
+    margin: 1rem 2rem 1rem auto;
+    padding: 0 1.4rem;
+    flex: 0 1 auto;
+    min-height: 3.5rem;
+    font-size: 0.95rem;
+    background-color: var(--light-teal);
+    color: var(--dark-blue);
+}
+
+.navbar-dropdown {
+    position: fixed;
+    top: 5.3rem;
+    right: 0;
+    background-color: var(--light-teal);
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 3rem;
+    border: 3px solid var(--dark-blue)
+}
+
+.navbar-modal-background {
+    display: flex;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: hsla(0,0,0,0);
+    z-index: 7;
+}
+
+.navbar-signout {
+    background-color: var(--light-teal);
+    border: none;
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar-signout:hover {
+    cursor: pointer
+}
+
+.navbar-dropdown-link {
+    font-size: 0.9rem;
+    margin-top: 1.3rem;
+    margin-bottom: 1.3rem;
+    text-decoration: none;
+    color: var(--dark-blue);
+}

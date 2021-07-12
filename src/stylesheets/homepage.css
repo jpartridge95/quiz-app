@@ -1,0 +1,169 @@
+
+/* Basic Layout things */
+
+.homepage-container {
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    margin-left: 3rem;
+    margin-right: 3rem;
+    min-height: 70vh;
+}
+
+/* Handles the search bar and buttons */
+
+.homepage-input-container {
+    flex: 1 0 60%;
+    margin-right: 5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.homepage-recent-container {
+    flex: 0 1 30%;
+    margin-left: auto
+}
+
+.homepage-input-inner {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    min-height: 50%;
+    max-width: 75%;
+    gap: 2rem 10%;
+}
+
+.homepage-search-header {
+    font-size: 1.8rem;
+    flex: 1 0 auto;
+    margin: 0rem;
+    align-self: flex-end;
+}
+
+.homepage-search-input {
+    flex: 1 0 100%;
+    border-radius: 12px;
+    border: none;
+    font-size: 2rem;
+    max-width: calc(100% - 2rem);
+    padding-left: 1rem;
+    padding-right: 1rem;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.homepage-search-button {
+    flex: 0 1 40%;
+    margin-left: auto;
+    border: none;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: all 50ms ease-in-out;
+}
+
+.homepage-search-button:hover,
+.homepage-search-button:focus {
+    cursor: pointer;
+}
+
+.homepage-search-button:active {
+    box-shadow: initial;
+    transform:translateY(4px);
+}
+
+.homepage-green-button {
+    background: var(--button-green);
+    margin-left: 5%
+}
+
+.homepage-red-button {
+    background: var(--button-red);
+    margin-right: 5%
+}
+
+/* Recent quizzes styling */
+
+.homepage-recent-header {
+    margin-top: 4rem;
+}
+
+.homepage-recent-inner {
+    border-top: 4px solid var(--dark-blue);
+    border-bottom: 4px solid var(--dark-blue);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem 0.5rem;
+    padding: 1rem;
+}
+
+.homepage-recent-component {
+    border: 2px solid var(--dark-blue);
+    border-radius: 5px;
+    padding: 0.5rem;
+    background-color: var(--light-teal);
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.homepage-recent-subheader {
+    margin: 0.5rem;
+    padding: 0rem;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--dark-blue);
+    font-weight: 600;
+}
+
+.homepage-recent-details {
+    margin: 1rem;
+    padding: 0rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.homepage-recent-subheader:hover,
+.homepage-recent-subheader:focus {
+    text-decoration: underline;
+}
+
+.homepage-recent-subheader:visited {
+    color: var(--solid-red);
+}
+
+/* Search window parts */
+
+.homepage-search-backdrop {
+    position: fixed;
+    display: flex;
+    background: rgba(0, 20, 77, 0.4);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage-search-container {
+    background: none;
+    min-width: 30%;
+    max-height: 50%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.homepage-search-card {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: var(--light-teal);
+    border: 2px solid var(--dark-blue);
+    border-radius: 5px;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

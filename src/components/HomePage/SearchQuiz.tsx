@@ -14,6 +14,9 @@ const SearchQuiz: React.FC = () => {
 
     const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setSearchTerm(event.target.value)
+        if (windowVisible === true) {
+            setWindowVisible(false)
+        }
     }
 
 
@@ -27,37 +30,37 @@ const SearchQuiz: React.FC = () => {
         setWindowVisible(true)
     }
 
-    const closeSearch = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const closeSearch = (event: React.MouseEvent<HTMLDivElement>) => {
         event.preventDefault()
         setWindowVisible(false)
     }
 
     return(
-        <form>
-            <input 
-                type="text" 
-                value={searchTerm} 
-                onChange={handleSearchChange}
-                data-testid={"quiz-search-input"} />
+        <div className={"homepage-input-container"}>
+            <form className={"homepage-input-inner"}>
+                <h3 className={"homepage-search-header"}>Find a Quiz</h3>
+                <input 
+                    type="text" 
+                    value={searchTerm} 
+                    onChange={handleSearchChange}
+                    data-testid={"quiz-search-input"} 
+                    className={"homepage-search-input"}/>
 
-            <button
-                data-testid={"quiz-search-button"}
-                onClick={handleSearch}>Search quiz</button>
-            <Link to={`/answerquiz/${searchTerm}`} data-testid={"quiz-id-link"}>Find quiz by ID</Link>
-            {
-                windowVisible && 
-                <div>
-                    <p>
-                        you have searched for {searchTerm}
-                    </p>
-                </div>
-            }
+                <button
+                    data-testid={"quiz-search-button"}
+                    onClick={handleSearch}
+                    className={"homepage-search-button homepage-green-button"}>Search quiz</button>
+                <Link 
+                    to={`/answerquiz/${searchTerm}`} 
+                    data-testid={"quiz-id-link"}
+                    className={"homepage-search-button homepage-red-button"}>Find quiz by ID</Link>
 
-            {
-                query && windowVisible &&
-                <SearchWindow query={query} action={closeSearch}/>
-            }
-        </form>
+                {
+                    query && windowVisible &&
+                    <SearchWindow query={query} action={closeSearch}/>
+                }
+            </form>
+        </div>
     )
 }
 

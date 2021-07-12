@@ -6,7 +6,7 @@ import { Link } from "react-router-dom"
 
 interface IProps {
     query: Query<DocumentData>,
-    action: (event: React.MouseEvent<HTMLButtonElement>) => void
+    action: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
 const SearchWindow: React.FC<IProps> = ({query, action}) => {
@@ -41,6 +41,7 @@ const SearchWindow: React.FC<IProps> = ({query, action}) => {
                 .get()
                     .then((docList) => {
                         docList.forEach((doc) => {
+                            // in here needs to be a display name retrieval
                             setSearchResults((state: any) => [...state, {data: doc.data(), id: doc.id}])
                         })
                         setLastVisible(docList.docs[docList.docs.length - 1])
@@ -54,23 +55,35 @@ const SearchWindow: React.FC<IProps> = ({query, action}) => {
         setHasRendered(true)
     }, [pageNumber])
     
+    useEffect(() => {
+        setSearchResults([])
+    }, [query])
 
     return (
-        <div>
-            <div>
+        <div className={"homepage-search-backdrop"} onClick={action}>
+            <div 
+                className={"homepage-search-container"}
+                onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                    e.stopPropagation();
+                }}>
                 {
                     searchResults && 
                     searchResults.map((doc: any, docIdx: number) => 
-                        <div key={`SR-${docIdx}`}>
-                            <Link to={"/answerquiz/" + doc.id}>{doc.data.quiz.title.join(" ")[0].toUpperCase() + doc.data.quiz.title.join(" ").substring(1)}</Link>
-                            <p>{doc.id}</p>
+                        <div 
+                            key={`SR-${docIdx}`}
+                            className={"homepage-search-card"}>
+                            <Link 
+                                to={"/answerquiz/" + doc.id}
+                                className={"homepage-recent-subheader"}>{doc.data.quiz.title.join(" ")[0].toUpperCase() + doc.data.quiz.title.join(" ").substring(1)}</Link>
+                            <p className={"homepage-recent-details"}>Quiz ID: {doc.id}</p>
+                            <p className={"homepage-recent-details"}>Number of questions: {doc.data.quiz.questions.length}</p>
                         </div>
                     )
                 }
-                <div ref={loader}>loading...</div>
+                <div 
+                    ref={loader}
+                    className={"homepage-search-card"}>loading...</div>
             </div>
-            <button onClick={action} >Close window</button>
-            
         </div>
     )
 }

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { firestore } from '../../App';
-import { IAnswer, IQuestions, answer } from "../../types/types"
 import { Link } from 'react-router-dom';
 
 
@@ -33,20 +32,25 @@ const RecentQuiz: React.FC = () => {
 
     
     return(
-        <aside data-testid={"recent-quiz-container"}>
-            {   
-                recentQuizzes && 
-                recentQuizzes.map((elem:any, index: number) => {
-                    let { title } = elem.quiz;
-                    return(
-                        <div key={`recentQuiz-${index}`}>
-                            <Link to={"/answerquiz/" + elem.uid}>{title.join(" ")[0].toUpperCase() + title.join(" ").substring(1)}</Link>
-                            <p>Created by: {elem.displayName}</p>
-                            <p>Submitted on: {elem.createdAt.toDate().toLocaleString().split(",")[0]}</p>
-                        </div>
-                    )
-                })
-            }
+        <aside data-testid={"recent-quiz-container"} className={"homepage-recent-container"}>
+            <h2 className={"homepage-recent-header"}>Recent quizzes</h2>
+            <div className={"homepage-recent-inner"}>
+                {   
+                    recentQuizzes && 
+                    recentQuizzes.map((elem:any, index: number) => {
+                        let { title } = elem.quiz;
+                        return(
+                            <div key={`recentQuiz-${index}`} className={"homepage-recent-component"}>
+                                <Link 
+                                    to={"/answerquiz/" + elem.uid}
+                                    className={"homepage-recent-subheader"}>{title.join(" ")[0].toUpperCase() + title.join(" ").substring(1)}</Link>
+                                <p className={"homepage-recent-details"}>Created by: {elem.displayName}</p>
+                                <p className={"homepage-recent-details"}>Submitted on: {elem.createdAt.toDate().toLocaleString().split(",")[0]}</p>
+                            </div>
+                        )
+                    })
+                }
+            </div>
         </aside>
     )
 }

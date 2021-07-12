@@ -1,14 +1,29 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import MyQuizzes from './MyQuizzes';
 import SignOut from './SignOut';
+import { Link } from 'react-router-dom';
 
-const UserDropdown: React.FC = () => {
+interface IProps {
+    action: (event: React.MouseEvent<HTMLDivElement>) => void
+}
+
+const UserDropdown: React.FC<IProps> = ({ action }) => {
 
     return (
-        <div>
-            <SignOut />
-            <MyQuizzes />
+        <div 
+            onClick={action}
+            className={"navbar-modal-background"}>
+            <div 
+                className={"navbar-dropdown"}
+                onClick={(e: React.MouseEvent<HTMLDivElement>) => {
+                    e.stopPropagation();
+                }}>
+                <SignOut />
+                <MyQuizzes />
+                <Link 
+                    to={"/createquiz"}
+                    className={"navbar-dropdown-link"}>New Quiz</Link>
+            </div>
         </div>
     )
 }

@@ -10,8 +10,8 @@ import { IAnswer, IQuestions, answer } from "../../types/types"
 
 const NewQuiz: React.FC = (): JSX.Element => {
 
-    const [quizTitle, setQuizTitle]         = useState<string>("My Quiz");
-    const [questions, setQuestions] = useState<IQuestions[]>([
+    const [quizTitle, setQuizTitle]     = useState<string>("My Quiz");
+    const [questions, setQuestions]     = useState<IQuestions[]>([
         {
             rootQuestion: "",
             rootAnswers:[
@@ -97,7 +97,7 @@ const NewQuiz: React.FC = (): JSX.Element => {
                     ++count
                 }
             })
-            if (count < 1) {
+            if (count !== 1) {
                 setError("One or more question is missing a correct answer")
             }
         })
