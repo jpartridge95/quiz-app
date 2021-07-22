@@ -1,0 +1,152 @@
+
+
+/* Shows all your quizzes CSS */
+
+.outer-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.infinite-container {
+    flex: 1 1 65%;
+    max-height: 75vh;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: none;
+    margin: 3rem;
+}
+
+.infinite-card {
+    padding: 1rem;
+    margin: 1rem;
+    background-color: var(--light-teal);
+    border: 2px solid var(--dark-blue);
+    border-radius: 5px;
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.infinite-header {
+    margin: 0.5rem;
+    padding: 0rem;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--dark-blue);
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+.infinite-header:hover,
+.infinite-header:focus {
+    text-decoration: underline;
+}
+
+.infinite-header:visited {
+    color: var(--solid-red);
+}
+
+.infinite-details {
+    margin: 1rem;
+    padding: 0rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.delete-button {
+    border: none;
+    background: var(--button-red);
+    padding: 0.5rem;
+    margin-left: 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    transition: all 50ms ease-in-out;
+}
+
+.delete-button:hover,
+.delete-button:focus {
+    cursor: pointer;
+}
+
+.delete-button:active {
+    box-shadow: initial;
+    transform:translateY(4px);
+}
+
+/* User info outer */
+
+.user-info-outer {
+    flex: 1 1 30%;
+    display: flex;
+    flex-direction: column;
+    margin: 3rem;
+    justify-content: space-between;
+}
+
+/* User info CSS */
+
+.details-container {
+    /* margin: 3rem; */
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-color: var(--light-teal);
+    border: 2px solid var(--dark-blue);
+    border-radius: 10px;
+    max-height: max-content;
+}
+
+.user-info-image {
+    align-self: center;
+    margin: 2rem;
+    border-radius: 50%;
+}
+
+.user-info-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.user-info-details {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.user-info-details > span {
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Create quiz block */
+
+.create-quiz-container {
+    background-color: var(--light-teal);
+    border: 2px solid var(--dark-blue);
+    border-radius: 10px;
+}
+
+.create-quiz-button {
+    margin: 3rem;
+    padding: 1rem 2rem;
+    border: none;
+    display: flex;
+    place-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    background: var(--button-green);
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    transition: all 50ms ease-in-out;
+}
+
+.create-quiz-button:active {
+    box-shadow: initial;
+    transform:translateY(4px);
+}

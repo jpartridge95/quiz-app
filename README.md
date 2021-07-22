@@ -14,6 +14,3 @@ TODO
     [] Write tests for the cookie banner
     [] Create the cookies page
 [] Implement a way to edit the quiz (optional, for later potentially - wouldn't work if leaderboards)
-
-
-p.s. please forgive my lack of destructuring in this project, It hurts my eyes to look at too, might get round to it at some point.

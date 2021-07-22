@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { useState, useEffect, FunctionComponent, MouseEvent } from 'react';
+import { useState } from 'react';
 import QuestionComponent from './QuestionComponent';
 import firebase from "firebase"
 import { auth, firestore } from "../../App"
-import NavBar from '../navbar/navbar';
 import { Link } from 'react-router-dom';
-import { IAnswer, IQuestions, answer } from "../../types/types"
+import { IQuestions, answer } from "../../types/types"
+import "../../stylesheets/newQuiz.css"
 
 
 const NewQuiz: React.FC = (): JSX.Element => {
@@ -132,32 +132,41 @@ const NewQuiz: React.FC = (): JSX.Element => {
 
     return (
         <div>
-            <nav>
-                <NavBar />
-            </nav>
-            <section>
+            <section className={"new-quiz"}>
                 {
                     !quizSubmitted ?
-                    <>    
-                        <input 
-                            type={"text"} 
-                            onChange={handleQuizTitleChange} 
-                            value={quizTitle}></input>
+                    <>
+                        <span>
+                            <label
+                                htmlFor={"quiz-title"}
+                                className={"new-quiz__quiz-title"}>Quiz Title: </label>
+                            <input 
+                                type={"text"} 
+                                onChange={handleQuizTitleChange} 
+                                value={quizTitle}
+                                name={"quiz-title"}
+                                className={`
+                                    new-quiz__input
+                                    new-quiz__input--large`}></input>
+                        </span>
 
                             {
                                 questions.map((elem: IQuestions, index: number) => {
                                     return (
                                         <div key={`QC-${index}`}>
-                                            <button 
-                                                data-testid={"remove-question-button"}
-                                                id={`deleteButton-${index}`} 
-                                                onClick={removeComponent}>X</button>
 
                                             <QuestionComponent 
                                                 qCIndex={`QC-${index}`} 
                                                 newQuestion={elem}
                                                 updateQuestion={handleComponentUpdate}
                                                 data-testid={"question-component"} />
+
+                                            <button 
+                                                data-testid={"remove-question-button"}
+                                                id={`deleteButton-${index}`} 
+                                                onClick={removeComponent}
+                                                className={"new-quiz__delete-button"}>Delete Question</button>
+
                                         </div>
                                     )
                                 })

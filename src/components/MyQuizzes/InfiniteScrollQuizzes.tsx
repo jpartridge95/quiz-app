@@ -3,6 +3,7 @@ import * as React from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { firestore } from '../../App';
 import { Link } from 'react-router-dom';
+import "../../stylesheets/myQuizzes.css"
 
 
 const InfiniteScrollQuizzes:React.FC<{userInfo: any}> = ({userInfo}) => {
@@ -19,7 +20,6 @@ const InfiniteScrollQuizzes:React.FC<{userInfo: any}> = ({userInfo}) => {
     const quizzesRef = firestore.collection("quizzes");
     let userRef = firestore.collection("users").doc(userInfo?.uid)
     let quizQuery = quizzesRef.where("createdBy", "==", userRef)
-    // add useeffect/useauth to get uid and usestate to store uid
 
 
 
@@ -69,19 +69,28 @@ const InfiniteScrollQuizzes:React.FC<{userInfo: any}> = ({userInfo}) => {
     }
 
     return (
-        <div>
+        <div className={"infinite-container"}>
 
             {results.map((elem:any, index:number) => (
-                <div key={"MQ-" + index}>
-                    <Link to={"/answerquiz/" + elem.id}>{elem.data.quiz.title.join(" ")[0].toUpperCase() + elem.data.quiz.title.join(" ").substring(1)}</Link>
-                    <p>Number of questions in quiz - {elem.data.quiz.questions.length}</p>
-                    <p>Created on: {elem.data.createdAt.toDate().toLocaleString().split(",")[0]}</p>
-                    <button onClick={deleteQuiz} name={elem.id}>Delete Quiz</button>
+                <div 
+                    key={"MQ-" + index}
+                    className={"infinite-card"}>
+                    <Link  
+                        to={"/answerquiz/" + elem.id}
+                        className={"infinite-header"}>{elem.data.quiz.title.join(" ")[0].toUpperCase() + elem.data.quiz.title.join(" ").substring(1)}</Link>
+                    <p className={"infinite-details"}>Number of questions in quiz - {elem.data.quiz.questions.length}</p>
+                    <p className={"infinite-details"}>Created on: {elem.data.createdAt.toDate().toLocaleString().split(",")[0]}</p>
+                    <button 
+                        onClick={deleteQuiz} 
+                        name={elem.id}
+                        className={"delete-button"}>Delete Quiz</button>
                 </div>
             ))}
 
             
-            <div ref={loader}>
+            <div 
+                ref={loader}
+                className={"infinite-card"}>
                 <p>{isLoader ? "Loading..." : "No more to display"}</p> 
                 {/*Probably have an animated svg for the loader*/}
             </div>

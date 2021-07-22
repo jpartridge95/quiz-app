@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useState, useEffect } from 'react';
-import NavBar from "../navbar/navbar"
 import ButtonOneAction from '../reusables/buttoneOneAction';
 
 const CookiePage: React.FC = () => {
@@ -25,7 +24,6 @@ const CookiePage: React.FC = () => {
 
     return (
         <div>
-            <NavBar />
             <p>cookies and shizz</p>
             <ButtonOneAction 
                 action={setCookiesYes}

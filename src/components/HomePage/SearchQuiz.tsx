@@ -1,7 +1,6 @@
-import { CollectionReference, DocumentData, DocumentReference, Query, QueryDocumentSnapshot, QuerySnapshot } from '@firebase/firestore-types';
-import { QueryArgs } from '@testing-library/react';
+import { CollectionReference, DocumentData, Query } from '@firebase/firestore-types';
 import * as React from 'react';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from "react-router-dom"
 import { firestore } from '../../App';
 import SearchWindow from './SearchWindow';

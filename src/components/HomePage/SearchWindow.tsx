@@ -9,7 +9,7 @@ interface IProps {
     action: (event: React.MouseEvent<HTMLDivElement>) => void
 }
 
-const SearchWindow: React.FC<IProps> = ({query, action}) => {
+const SearchWindow: React.FC<IProps> = ({ query, action }) => {
 
     
     const [pageNumber, setPageNumber] = useState(-1);
@@ -41,7 +41,6 @@ const SearchWindow: React.FC<IProps> = ({query, action}) => {
                 .get()
                     .then((docList) => {
                         docList.forEach((doc) => {
-                            // in here needs to be a display name retrieval
                             setSearchResults((state: any) => [...state, {data: doc.data(), id: doc.id}])
                         })
                         setLastVisible(docList.docs[docList.docs.length - 1])
@@ -53,6 +52,7 @@ const SearchWindow: React.FC<IProps> = ({query, action}) => {
                     })
                 }
         setHasRendered(true)
+        // eslint-disable-next-line
     }, [pageNumber])
     
     useEffect(() => {
@@ -82,7 +82,7 @@ const SearchWindow: React.FC<IProps> = ({query, action}) => {
                 }
                 <div 
                     ref={loader}
-                    className={"homepage-search-card"}>loading...</div>
+                    className={"homepage-search-card"}>{isLoader ? "Loading..." : "No more to display"}</div>
             </div>
         </div>
     )

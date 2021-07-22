@@ -38,7 +38,7 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
         )
     }
 
-    const handleQuestionChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleQuestionChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setQuestion(event.target.value)
     }
 
@@ -88,12 +88,19 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
 
     return (
         <div>
-            <input 
-                data-testid={"question-input-field"} 
-                value={newQuestion?.rootQuestion} 
-                onChange={handleQuestionChange}
-                placeholder={"Question"}></input>
-            <p>Correct?</p>
+            <span>
+                <label
+                    htmlFor={"question-input"}>Question: </label>
+                <textarea 
+                    data-testid={"question-input-field"} 
+                    value={newQuestion?.rootQuestion} 
+                    onChange={handleQuestionChange}
+                    placeholder={"Question"}
+                    name={"question-input"}
+                    className={`
+                        new-quiz__input
+                        new-quiz__input--medium`}></textarea>
+                </span>
             {
                 rootAnswers.map((element: answer, index: number):JSX.Element => {
                     return (
@@ -109,14 +116,18 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
                                 data-testid={"answer-input-field"}
                                 value={element.answerText}
                                 onChange={handleTextChange}
-                                placeholder={`Answer ${index + 1}`}></input>
+                                placeholder={`Answer ${index + 1}`}
+                                className={`
+                                    new-quiz__input
+                                    new-quiz__input--small`}></input>
 
                            <input 
                                 name={`check-${index}`}
                                 type={"checkbox"} 
                                 data-testid={index === 0?"correct-check-test":"correct-checkbox"}
                                 checked={element.correct}
-                                onChange={handleCheckChange}></input>
+                                onChange={handleCheckChange}
+                                className={"new-quiz__checkbox"}></input>
                         </div>
                     )
                 })

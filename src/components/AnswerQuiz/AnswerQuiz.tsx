@@ -2,7 +2,6 @@ import * as React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router';
 import { firestore } from '../../App';
-import NavBar from '../navbar/navbar';
 import { IQuestions, answer } from "../../types/types"
 
 interface IQuestionDataInner {
@@ -16,7 +15,7 @@ interface IQuestionData {
     quiz: IQuestionDataInner,
 }
 
-export const AnswerQuiz: React.FC = () => {
+const AnswerQuiz: React.FC = () => {
 
     const [usefulData, setUsefulData] = useState<IQuestionData | undefined>();
     const [count, setCount] = useState<number>(0);
@@ -54,7 +53,6 @@ export const AnswerQuiz: React.FC = () => {
 
     return (
         <div>
-            <NavBar />
 
             {
                 questionArray && questionArray?.length > count
@@ -82,3 +80,5 @@ export const AnswerQuiz: React.FC = () => {
         </div>
     )
 }
+
+export default AnswerQuiz;

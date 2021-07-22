@@ -2,7 +2,8 @@ import * as React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../App';
 import InfiniteScrollQuizzes from './InfiniteScrollQuizzes';
-import NavBar from "../navbar/navbar"
+import UserInfo from './UserInfo';
+import "../../stylesheets/myQuizzes.css"
 
 const ViewMyQuizzes: React.FC = () => {
 
@@ -10,9 +11,10 @@ const ViewMyQuizzes: React.FC = () => {
 
     return (
         <div>
-            <NavBar />
-            <p>Hello {user?.displayName}, here are all of your quizzes</p>
-            <InfiniteScrollQuizzes userInfo={user} />
+            <div className={"outer-container"}>
+                <InfiniteScrollQuizzes userInfo={user} />
+                <UserInfo />
+            </div>
         </div>
     )
 }
