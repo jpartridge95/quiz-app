@@ -1,16 +1,22 @@
 /* Going to try BEM naming from here */
 
+/* To do: refactor this mess into a structured style sheet
+    a naming convention isn't an excuse to get messy */
+
 
 .new-quiz {
     display: flex;
     flex-direction: column;
-    border: 2px solid red;
     overflow: scroll;
+    overflow-x: hidden;
     max-height: 65vh;
     min-height: 65vh;
     padding: 2rem;
     margin: 3rem;
     gap: 2rem;
+    border-top: 5px solid var(--dark-blue);
+    border-bottom: 5px solid var(--dark-blue);
+    border-radius: 5px;
 }
 
 .new-quiz__quiz-title {
@@ -33,27 +39,33 @@
 }
 
 .new-quiz__input--medium {
-    width: 20vw;
+    width: 41vw;
     padding: 0.5rem 0.25rem;
     font-size: 1rem;
     border-radius: 5px;
 }
 
 .new-quiz__input--small {
-    width: 20vw;
+    width: 30vw;
     padding: 0.5rem 0.25rem;
     font-size: 0.8rem;
     border-radius: 4px;
     height: max-content;
 }
 
+.new-quiz__input--left-margin {
+    margin-left: 6.95rem;
+}
+
 /* All these styles are for some kind of hacky checkbox hack */
 
 .new-quiz__checkbox {
-    transition: all 100ms ease-in 50ms;
+    transition: all 100ms ease-in;
+    position: relative;
+    margin-top: 0.3rem;
 }
 
-.new-quiz__checkbox::after {
+.new-quiz__checkbox::before {
     display: block;
     content: "Wrong";
     width: 4rem;
@@ -63,6 +75,23 @@
     padding: 0.1rem 0.2rem;
     text-align: center;
     border-radius: 3px;
+}
+
+.new-quiz__checkbox::after {
+    position: relative;
+    display: block;
+    left: 4.4rem;
+    top: -1.16rem;
+    content: "Right";
+    width: 4rem;
+    height: min-content;
+    opacity: 0.3;
+    background: var(--button-green);
+    padding: 0.1rem 0.2rem;
+    text-align: center;
+    border-radius: 3px;
+    z-index: -1;
+    transition: all 100ms ease-in;
 }
 
 .new-quiz__checkbox:hover {
@@ -81,9 +110,15 @@
     transform: translateX(calc(4rem + 0.4rem))
 }
 
-.new-quiz__checkbox:checked::after {
+.new-quiz__checkbox:checked::before {
     content: "Right";
     background: var(--button-green);
+}
+
+.new-quiz__checkbox:checked::after {
+    content: "Wrong";
+    background: var(--button-red);
+    transform: translateX(calc(-8rem - 0.8rem))
 }
 
 /* CheckBox hack over */
@@ -91,9 +126,90 @@
 .new-quiz__delete-button {
     border: none;
     background: var(--button-red);
+    border-radius: 5px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.new-quiz__delete-button--large {
+    padding: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.new-quiz__delete-button--small {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    margin-right: 1rem;
+}
+
+.new-quiz__question-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 2rem;
+    border-radius: 15px;
+}
+
+.new-quiz__question-container--border {
+    border: 3px solid var(--dark-blue);
+}
+
+.new-quiz__add-button {
+    background: var(--button-green);
+    border: none;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.new-quiz__add-button--answer {
+    padding: 0.4rem;
+    font-size: 0.8rem;
+    margin-right: 1rem;
+    border-radius: 5px;
+    max-width: max-content;
+}
+
+.new-quiz__add-button--question {
     padding: 0.5rem;
     font-weight: 600;
     font-size: 0.9rem;
     border-radius: 5px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.new-quiz__add-button--submit {
+    padding: 1rem;
+    font-weight: 600;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    max-width: 10rem;
+    align-self: center;
+    margin-top: 2rem;
+}
+
+.new-quiz__delete-button:focus,
+.new-quiz__delete-button:hover,
+.new-quiz__add-button:focus,
+.new-quiz__add-button:hover {
+    cursor: pointer;
+}
+
+.new-quiz__delete-button:active,
+.new-quiz__add-button:active {
+    box-shadow: initial;
+    transform:translateY(4px);
+}
+
+
+.new-quiz__question-span {
+    display: flex;
+    flex-direction: row;
+}
+
+.new-quiz__question-label {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    place-self: center;
+    margin-right: 1.3rem;
 }

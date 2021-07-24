@@ -153,7 +153,11 @@ const NewQuiz: React.FC = (): JSX.Element => {
                             {
                                 questions.map((elem: IQuestions, index: number) => {
                                     return (
-                                        <div key={`QC-${index}`}>
+                                        <div 
+                                            key={`QC-${index}`}
+                                            className={`
+                                                new-quiz__question-container
+                                                new-quiz__question-container--border`}>
 
                                             <QuestionComponent 
                                                 qCIndex={`QC-${index}`} 
@@ -165,7 +169,10 @@ const NewQuiz: React.FC = (): JSX.Element => {
                                                 data-testid={"remove-question-button"}
                                                 id={`deleteButton-${index}`} 
                                                 onClick={removeComponent}
-                                                className={"new-quiz__delete-button"}>Delete Question</button>
+                                                className={`
+                                                    new-quiz__delete-button
+                                                    new-quiz__delete-button--large`
+                                                }>Delete Question</button>
 
                                         </div>
                                     )
@@ -173,10 +180,16 @@ const NewQuiz: React.FC = (): JSX.Element => {
                             }
                         <button 
                             data-testid={"add-question-button"}
-                            onClick={addQuestionComponent}>Add a new question</button>
+                            onClick={addQuestionComponent}
+                            className={`
+                                new-quiz__add-button
+                                new-quiz__add-button--question`}>Add a new question</button>
                         <button
                             onClick={submitQuiz}
-                            data-testid={"submit-quiz-button"}>Submit quiz</button>
+                            data-testid={"submit-quiz-button"}
+                            className={`
+                                new-quiz__add-button
+                                new-quiz__add-button--submit`}>Submit quiz</button>
                         <p>{error}</p>
                     </>
                     :

@@ -87,10 +87,12 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
 
 
     return (
-        <div>
-            <span>
+        <div className={`
+            new-quiz__question-container`}>
+            <span className={"new-quiz__question-span"}>
                 <label
-                    htmlFor={"question-input"}>Question: </label>
+                    htmlFor={"question-input"}
+                    className={"new-quiz__question-label"}>Question {+qCIndex.split("-")[1] + 1}: </label>
                 <textarea 
                     data-testid={"question-input-field"} 
                     value={newQuestion?.rootQuestion} 
@@ -108,7 +110,11 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
                            {(index > 1) && <button 
                                                 data-testid={"remove-answer-button"} 
                                                 onClick={removeAnswerHandler}
-                                                name={`remove-${index}`}>X</button> }
+                                                name={`remove-${index}`}
+                                                className={`
+                                                    new-quiz__delete-button
+                                                    new-quiz__delete-button--small`
+                                                }>Delete Answer</button> }
                            
                            <input
                                 name={`answer-${index}`} 
@@ -119,7 +125,8 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
                                 placeholder={`Answer ${index + 1}`}
                                 className={`
                                     new-quiz__input
-                                    new-quiz__input--small`}></input>
+                                    new-quiz__input--small
+                                    ${index <= 1 && "new-quiz__input--left-margin"}`}></input>
 
                            <input 
                                 name={`check-${index}`}
@@ -132,7 +139,12 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
                     )
                 })
             }
-            <button data-testid={"add-answer-button"} onClick={addAnswerField}>Add an answer</button>
+            <button 
+                data-testid={"add-answer-button"}  
+                onClick={addAnswerField}
+                className={`
+                    new-quiz__add-button
+                    new-quiz__add-button--answer`}>Add an answer</button>
         </div>
     )
 }

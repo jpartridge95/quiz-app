@@ -4,6 +4,7 @@ import firebase from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
 import NavBar from './components/navbar/navbar';
+import Loading from './components/reusables/loadingFallback';
 // import Home from "./components/HomePage/home"
 // import NewQuiz from './components/NewQuiz/newQuiz';
 // import AnswerQuiz from './components/AnswerQuiz/AnswerQuiz';
@@ -41,7 +42,7 @@ const App:FunctionComponent = () => {
     <>
       <NavBar />
       <Suspense fallback={
-        <div>Loading...</div>
+        <Loading />
         // Will now need a proper fallback component
       }>
         <Switch>

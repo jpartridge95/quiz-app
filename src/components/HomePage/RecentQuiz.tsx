@@ -23,7 +23,6 @@ const RecentQuiz: React.FC = () => {
                             const displayName = allInfo.displayName
                             queryResults = [...queryResults, {...docData, uid: doc.id, displayName}]
                             setRecentQuizzes(queryResults)
-                            console.log(queryResults)
                         })
                 })
             })
