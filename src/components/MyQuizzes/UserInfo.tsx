@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { auth } from '../../App';
 import "../../stylesheets/myQuizzes.css"

@@ -1,5 +1,4 @@
-import React, { useState, useEffect, ButtonHTMLAttributes } from 'react';
-import { JsxChild } from 'typescript';
+import React, { useState, useEffect } from 'react';
 import { IAnswer, IQuestions, answer } from "../../types/types"
 
 interface IProps {
@@ -83,6 +82,7 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
 
     useEffect(() => {
         updateQuestion(answers, question, indexFromKey)
+        // eslint-disable-next-line
     }, [answers, question])
 
 
