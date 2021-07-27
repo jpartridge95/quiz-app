@@ -114,7 +114,7 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
                                                 className={`
                                                     new-quiz__delete-button
                                                     new-quiz__delete-button--small`
-                                                }>Delete Answer</button> }
+                                                }>➖</button> }
                            
                            <input
                                 name={`answer-${index}`} 
@@ -144,7 +144,7 @@ const QuestionComponent = ({ qCIndex, newQuestion, updateQuestion }: IProps):JSX
                 onClick={addAnswerField}
                 className={`
                     new-quiz__add-button
-                    new-quiz__add-button--answer`}>Add an answer</button>
+                    new-quiz__add-button--answer`}>➕</button>
         </div>
     )
 }

@@ -43,6 +43,7 @@
     padding: 0.5rem 0.25rem;
     font-size: 1rem;
     border-radius: 5px;
+    margin-bottom: 2rem;
 }
 
 .new-quiz__input--small {
@@ -54,7 +55,7 @@
 }
 
 .new-quiz__input--left-margin {
-    margin-left: 6.95rem;
+    margin-left: 2.95rem;
 }
 
 /* All these styles are for some kind of hacky checkbox hack */
@@ -204,14 +205,15 @@
 
 .new-quiz__question-span {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
 
 .new-quiz__question-label {
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
-    place-self: center;
+    place-self: left;
     margin-right: 1.3rem;
+    margin-bottom: 1.5rem;
 }
 
 .new-quiz__submitted-container {
@@ -254,4 +256,42 @@
 .new-quiz__preview:focus {
     transform: scale(1.1);
     color: green;
+}
+
+@media only screen and (max-width: 1000px) {
+    
+    .new-quiz {
+        margin: 3rem 0.5rem;
+        padding: 2rem 0.5rem;
+    }
+
+    .new-quiz__question-span {
+        flex-direction: column;
+        justify-content: left;
+    }
+
+    .new-quiz__question-label {
+        place-self: initial;
+        margin-bottom: 0.4rem;
+    }
+
+    .new-quiz__question-container {
+        padding: 0.6rem;
+    }
+
+    .new-quiz__input--left-margin {
+        margin-left: 2.95rem;
+    }
+
+    .new-quiz__input--small {
+        width: 35vw;
+    }
+
+    .new-quiz__input--medium {
+        width: 70vw
+    }
+
+    .new-quiz__input--large {
+        width: 60vw;
+    }
 }
