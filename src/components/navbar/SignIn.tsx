@@ -6,7 +6,7 @@ import { GoogleAuthProvider } from '@firebase/auth-types';
 
 const SignIn: React.FC = () => {
 
-    const [cookiesAccepted, setcookiesAccepted] = useState(false);
+    const [cookiesAccepted, setcookiesAccepted] = useState(true);
 
     let localCookies: string | null = localStorage.getItem("cookies-accepted")
 

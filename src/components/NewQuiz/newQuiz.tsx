@@ -77,46 +77,60 @@ const NewQuiz: React.FC = (): JSX.Element => {
         setQuestions(theMiddle)
     }
 
-    // I am sure there is a more space/time efficient way to do this, however, I am focusing primarily
+    // I am sure there is a more efficient way to do this, however, I am focusing primarily
     // on making it work first
 
+    
     const submitQuiz = (event: React.MouseEvent<HTMLButtonElement>): void => {
-        event.preventDefault()
+        event.preventDefault();
         const regex: RegExp = /^(?!\s*$).+/
+        let statelessError = ""
 
         setError("")
 
         if (!auth.currentUser) {
-            setError("You must be signed in to submit a question")
+            setError(() => "You must be signed in to submit a question")
+            statelessError = "You must be signed in to submit a question"
         }
+
 
         questions.forEach((element: IQuestions) => {
             let count: number = 0
             element.rootAnswers.forEach((elem: answer) => {
                 if (elem.correct === true) {
-                    ++count
+                    count = count + 1;
                 }
             })
             if (count !== 1) {
-                setError("One or more question is missing a correct answer")
+                setError(() => "One or more question is missing a correct answer")
+                statelessError = "One or more question is missing a correct answer"
             }
         })
 
         questions.forEach((elem: IQuestions): void => {
             elem.rootAnswers.forEach((answersElem: answer) => {
                 if (!regex.test(answersElem.answerText)) {
-                    setError("One or more answer fields are empty")
+                    setError(() => "One or more answer fields are empty")
+                    statelessError = "One or more answer fields are empty"
                 }
             })
         })
 
         questions.forEach((elem: IQuestions): void => {
             if (!regex.test(elem.rootQuestion)) {
-                setError("One or more question fields are empty")
+                setError(() => "One or more question fields are empty")
+                statelessError = "One or more question fields are empty"
             }
         })
 
-        if (error === "" && auth.currentUser) {
+        if (statelessError === "") {
+            return sendQuiz();
+        }
+
+    }
+
+    const sendQuiz = ():void => {
+        if (auth.currentUser) {
             firestore.collection("quizzes").add({
                 quiz: {
                     title: quizTitle.toLowerCase().split(" "),
@@ -127,8 +141,8 @@ const NewQuiz: React.FC = (): JSX.Element => {
             }).then((docRef) => setSubmittedQuizID(docRef.id))
             setQuizSubmitted(true)
         }
-
     }
+    
 
     return (
         <div>
@@ -193,11 +207,13 @@ const NewQuiz: React.FC = (): JSX.Element => {
                         <p>{error}</p>
                     </>
                     :
-                    <>
-                        <p>Thank you for submitting a quiz</p>
-                        <p>Your quiz ID is {submittedQuizID}</p>
-                        <Link to={`/answerquiz/${submittedQuizID}`}>Preview Quiz</Link>
-                    </>
+                    <div className={"new-quiz__submitted-container"}>
+                        <p className={"new-quiz__thank-you"}>Thank you for submitting a quiz 😊</p>
+                        <p className={"new-quiz__quiz-id"}>Your quiz ID is {submittedQuizID}</p>
+                        <Link 
+                            className={"new-quiz__preview"} 
+                            to={`/answerquiz/${submittedQuizID}`}>Preview Quiz</Link>
+                    </div>
                 }
             </section>
         </div>

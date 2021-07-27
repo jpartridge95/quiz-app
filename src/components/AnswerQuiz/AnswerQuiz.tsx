@@ -4,6 +4,7 @@ import { useParams } from 'react-router';
 import { firestore } from '../../App';
 import { IQuestions, answer } from "../../types/types"
 import "../../stylesheets/answerQuiz.css"
+import { Link } from "react-router-dom"
 
 interface IQuestionDataInner {
     questions: IQuestions[],
@@ -95,7 +96,18 @@ const AnswerQuiz: React.FC = () => {
                     }
                 </div>
                 :
-                <p className={"answer-quiz__question-container"}>That's the end, thank you for playing 😊</p>
+                <div className={"answer-quiz__message-container"}>
+                    <p className={"answer-quiz__message"}>That's the end, thank you for playing 😊</p>
+                    <Link 
+                        className={"answer-quiz__home-link"}
+                        to={"/"}>Back to the homepage</Link>
+                    <button
+                        className={`
+                            answer-quiz__home-link
+                            answer-quiz__home-link--button`}
+                        // eslint-disable-next-line
+                        onClick={() => location.reload()}>Play again</button>
+                </div>
             }
             <div className={"answer-quiz__score-container"}>
                 <div className={"answer-quiz__score-inner"}>
@@ -119,7 +131,15 @@ const AnswerQuiz: React.FC = () => {
                     </svg>
                     {questionArray && <p className={"answer-quiz__score-score"}>{score}/{questionArray.length}</p>}
                 </div>
-                {score === questionArray?.length ? <p>100%, well done</p> : <p>{!isNaN((score/count)*100) ? (score/count)*100 + "%" : "0%"}</p>}
+                {
+                    score === questionArray?.length 
+                    ?
+                    <p className={`
+                    answer-quiz__score-percent`}>100%, well done</p> 
+                    : 
+                    <p className={`
+                        answer-quiz__score-percent`}>{!isNaN((score/count)*100) ? (score/count)*100 + "%" : "0%"}</p>
+                }
             </div>
         </div>
     )
