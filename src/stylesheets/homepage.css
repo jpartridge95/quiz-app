@@ -167,3 +167,44 @@
     border-radius: 5px;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
+
+/* Smaller screens bookmark */
+
+@media only screen and (max-width: 1000px) {
+    .homepage-container {
+        max-width: 100vw;
+        flex-direction: column;
+    }
+
+    .homepage-input-container {
+        margin-right: 0;
+        flex: 1 0 60%;
+        margin-top: auto;
+    }
+
+    .homepage-input-inner {
+        max-width: 90%;
+        margin-top: 1rem;
+        text-align: center;
+        gap: 1rem 0;
+    }
+
+    .homepage-search-input {
+        font-size: 1.2rem;
+        padding: 0.5rem 0.3rem;
+        max-width: 97%;
+    }
+
+    .homepage-recent-header {
+        margin-top: 2rem;
+    }
+
+    .homepage-search-button {
+        font-size: 1.1rem;
+        padding: 0.3rem;
+    }
+    
+    .homepage-recent-container {
+        margin: 0;
+    }
+}
