@@ -280,7 +280,7 @@
     }
 
     .new-quiz__input--left-margin {
-        margin-left: 2.95rem;
+        margin-left: 1.5rem;
     }
 
     .new-quiz__input--small {
@@ -293,5 +293,14 @@
 
     .new-quiz__input--large {
         width: 60vw;
+    }
+
+    .new-quiz__add-button--answer {
+        margin-left: -0.5rem;
+    }
+
+    .new-quiz__delete-button--small {
+        margin-right: 0.15rem;
+        margin-left: -0.5rem;
     }
 }

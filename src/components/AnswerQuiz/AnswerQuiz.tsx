@@ -73,6 +73,17 @@ const AnswerQuiz: React.FC = () => {
 
     return (
         <div className={"answer-quiz"}>
+            <div className={"answer-quiz__mobile-score"}>
+                <div style={{
+                    width: "100vw",
+                    height: "5vh",
+                    backgroundColor: scoreFill((score/count) * 100),
+                    transform: count !== 0 ? `scale(${score/count})` : "scale(0)",
+                    transformOrigin: "left",
+                    transition: "all 150ms ease-in-out"
+                }}></div>
+                {questionArray && <p className={"answer-quiz__score-score"}>{score}/{questionArray.length}</p>}
+            </div>
 
             {
                 questionArray && questionArray?.length > count
@@ -109,6 +120,7 @@ const AnswerQuiz: React.FC = () => {
                         onClick={() => location.reload()}>Play again</button>
                 </div>
             }
+            
             <div className={"answer-quiz__score-container"}>
                 <div className={"answer-quiz__score-inner"}>
                     <svg 

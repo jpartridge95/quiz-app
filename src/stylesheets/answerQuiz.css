@@ -151,5 +151,41 @@
     cursor: pointer;
 }
 
+.answer-quiz__mobile-score {
+    display: none;
+}
 
+@media only screen and (max-width: 1000px) {
+    .answer-quiz__mobile-score {
+        display: initial;
+        position: fixed;
+        top: 4rem;
+        left: 0;
+        z-index: -1;
+    }
+
+    .answer-quiz__score-container {
+        display: none;
+    }
+
+    .answer-quiz__score-score {
+        position: initial;
+        margin-top: 0.5rem;
+    }
+
+    .answer-quiz__question-container {
+        margin-top: 2rem;
+        grid-template-columns: 1;
+        gap: 0;
+    }
+
+    .answer-quiz__title {
+        grid-area: 1 / 1 / span 2 / span 1;
+        margin-bottom: 0;
+    }
+
+    .answer-quiz__answer {
+        margin: 0.5rem 3rem;
+    }
+}
 

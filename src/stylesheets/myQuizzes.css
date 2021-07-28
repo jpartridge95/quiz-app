@@ -151,3 +151,14 @@
     box-shadow: initial;
     transform:translateY(4px);
 }
+
+@media only screen and (max-width: 1000px) {
+
+    .user-info-outer {
+        display: none;
+    }
+
+    .infinite-container {
+        margin: 3rem 1rem;
+    }
+}
