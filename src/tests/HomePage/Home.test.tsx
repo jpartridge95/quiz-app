@@ -1,8 +1,8 @@
 import React from "react"
-import { fireEvent, getByLabelText, render, screen, waitFor } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import userEvent from '@testing-library/user-event'
 import Home from "../../components/HomePage/home"
-import { MemoryRouter, Router } from "react-router"
+import { MemoryRouter } from "react-router"
 
 describe("Home Page test suite", () => {
 

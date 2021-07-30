@@ -1,8 +1,8 @@
 import React from "react"
-import { fireEvent, getByLabelText, render, screen, waitFor } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import NewQuiz from "../../components/NewQuiz/newQuiz"
 import userEvent from '@testing-library/user-event'
-import { MemoryRouter, Router } from "react-router"
+import { MemoryRouter } from "react-router"
 import { createMemoryHistory } from "history"
 
 describe("New Quiz Section", () => {  
@@ -61,8 +61,6 @@ describe("New Quiz Section", () => {
     // Big Validation test, will take time
 
     it("Validates inputs for empty strings and including an answer marked correct", async () => {
-
-        const history = createMemoryHistory()
 
         render(<NewQuiz />, {wrapper: MemoryRouter})
 

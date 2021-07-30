@@ -1,5 +1,5 @@
 import React from "react"
-import { cleanup, render, screen, waitFor } from "@testing-library/react"
+import { render, screen, waitFor } from "@testing-library/react"
 import NavBar from "../../components/navbar/navbar"
 import SignedInUser from "../../components/navbar/SignedInUser"
 import userEvent from "@testing-library/user-event"
