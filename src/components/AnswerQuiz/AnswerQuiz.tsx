@@ -78,7 +78,7 @@ const AnswerQuiz: React.FC = () => {
                     width: "100vw",
                     height: "5vh",
                     backgroundColor: scoreFill((score/count) * 100),
-                    transform: count !== 0 ? `scale(${score/count})` : "scale(0)",
+                    transform: count !== 0 ? `scale(${score/count})` : "scaleX(0)",
                     transformOrigin: "left",
                     transition: "all 150ms ease-in-out"
                 }}></div>
